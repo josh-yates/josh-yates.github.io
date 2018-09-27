@@ -1,7 +1,68 @@
 // JavaScript source code
 
+var i0 = 0;
+var j0 = 0;
+
+function Main() {
+    var TileArray = GenerateTiles();
+    UpdateTiles(TileArray);
+    UpdateMoveableTiles(TileArray);
+    //var StepCount = 0;
+    //var ContinueGame = true;
+    //while (ContinueGame) {
+    //    UpdateTiles(TileArray);
+    //    if (HasUserWon(TileArray)) {
+    //        break;
+    //    }
+
+    //}
+
+}
+
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function HasUserWon(TileArray) {
+    for (var i = 0; i < TileArray.length; i++) {
+        for (var j = 0; j < TileArray[i].length; j++) {
+            if (TileArray[i][j] != (i * 3) + j) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+function FindMoveableIDs(TileArray) {
+    var IDArray = [];
+    //search above
+    if (i0 - 1 >= 0) {
+        IDArray.push("t" + (((i0 - 1) * 3) + j0));
+    }
+    //search below
+    if (i0 + 1 < TileArray.length) {
+        IDArray.push("t" + (((i0 + 1) * 3) + j0));
+    }
+    //search left
+    if (j0 - 1 >= 0) {
+        IDArray.push("t" + (((i0) * 3) + j0 - 1));
+    }
+    //search right
+    if (j0 + 1 < TileArray.length) {
+        IDArray.push("t" + (((i0) * 3) + j0 + 1));
+    }
+    return IDArray;
+}
+
+function UpdateMoveableTiles(TileArray) {
+    var IDArray = FindMoveableIDs(TileArray);
+    for (var i = 0; i < IDArray.length; i++) {
+        var TileDiv = document.getElementById(IDArray[i]);
+        TileDiv.style.boxShadow = "-4px 4px 0px dimgrey";
+        TileDiv.style.cursor = "pointer";
+        TileDiv.style.backgroundColor = "rgb(216, 240, 243)";
+    }
 }
 
 function GenerateTiles(){
@@ -27,10 +88,12 @@ function UpdateTiles(TileArray) {
             var TileID = (i * 3) + j;
             var TileContents = TileArray[i][j];
             if (TileContents == 0) {
+                i0 = i;
+                j0 = j;
                 var TileDiv = document.getElementById("t" + TileID);
                 TileDiv.textContent = "";
                 TileDiv.style.borderStyle = "none";
-                TileDiv.style.backgroundColor = "dimgrey";
+                TileDiv.style.backgroundColor = "darkgrey";
             }
             else {
                 var TileDiv = document.getElementById("t" + TileID);
@@ -40,9 +103,4 @@ function UpdateTiles(TileArray) {
             }
         }
     }
-}
-
-function Main() {
-    var TileArray = GenerateTiles();
-    UpdateTiles(TileArray);
 }
