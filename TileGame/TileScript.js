@@ -1,17 +1,23 @@
 // JavaScript source code
 
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 function GenerateTiles(){
     var TileArray = new Array(3);
+    var IntArray = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     for (var i = 0; i < TileArray.length; i++) {
         TileArray[i] = new Array(3);
     }
     for (var i = 0; i < TileArray.length; i++) {
         for (var j = 0; j < TileArray[i].length; j++) {
-            TileArray[i][j] = (i * 3) + j;
+            //Generate a random position in the int array, assign the value, then remove that element
+            var RandomPos = getRandomInt(0, IntArray.length - 1);
+            TileArray[i][j] = IntArray[RandomPos];
+            IntArray.splice(RandomPos, 1);
         }
     }
-    //Randomly place tiles here
     return TileArray;
 }
 
