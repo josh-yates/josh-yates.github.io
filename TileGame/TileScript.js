@@ -59,9 +59,7 @@ function UpdateMoveableTiles(TileArray) {
     var IDArray = FindMoveableIDs(TileArray);
     for (var i = 0; i < IDArray.length; i++) {
         var TileDiv = document.getElementById(IDArray[i]);
-        TileDiv.style.boxShadow = "-4px 4px 0px dimgrey";
-        TileDiv.style.cursor = "pointer";
-        TileDiv.style.backgroundColor = "rgb(216, 240, 243)";
+        TileDiv.className = "MoveableTile";
     }
 }
 
@@ -92,14 +90,12 @@ function UpdateTiles(TileArray) {
                 j0 = j;
                 var TileDiv = document.getElementById("t" + TileID);
                 TileDiv.textContent = "";
-                TileDiv.style.borderStyle = "none";
-                TileDiv.style.backgroundColor = "darkgrey";
+                TileDiv.className = "EmptyTile";
             }
             else {
                 var TileDiv = document.getElementById("t" + TileID);
                 TileDiv.textContent = TileContents;
-                TileDiv.style.borderStyle = "solid";
-                TileDiv.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
+                TileDiv.className = "Tile";
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿body {
+﻿@import url('https://fonts.googleapis.com/css?family=Pacifico');
+body {
     background-image: linear-gradient(to bottom right,rgb(139, 210, 218),rgb(204, 102, 153));
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -16,14 +17,48 @@
 }
 
 .Tile {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgb(255, 255, 255);
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 10px;
     font-size: 30px;
+    font-family: 'Pacifico', cursive;
     border-radius: 10px;
     border-style: solid;
+    cursor: default;
+}
+
+.Tile:hover{
+    background-color: rgb(200,200,200);
+}
+
+.MoveableTile {
+    background-color: rgb(102, 179, 255);
+    border-style: solid;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    font-size: 30px;
+    font-family: 'Pacifico', cursive;
+    border-radius: 10px;
+    border-style: solid;
+}
+
+.MoveableTile:hover {
+    background-color: rgb(179, 217, 255);
+}
+
+.EmptyTile {
+    background-color: darkgrey;
+    border-style: none;
+    cursor: default;
+}
+
+.EmptyTile:hover{
+    background-color: darkgrey;
 }
 
 .StepCount{
